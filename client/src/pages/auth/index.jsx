@@ -1,4 +1,6 @@
+import CommonForm from '@/components/common-form'
 import { Tabs } from '@/components/ui/tabs'
+import { signUpFormControls } from '@/config'
 import { TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
 import { GraduationCap } from 'lucide-react'
 import React, { useState } from 'react'
@@ -28,8 +30,10 @@ const AuthPage = () => {
             <TabsTrigger value='signin' className='border-2 w-3/4 rounded-2xl'>Sign In </TabsTrigger>
             <TabsTrigger value='signup' className='border-2 w-3/4 rounded-2xl'>Sign Up </TabsTrigger>
         </TabsList>
-        <TabsContent value='signin'>signin</TabsContent>
-        <TabsContent value='signup'>signup</TabsContent>
+        <TabsContent value='signin'>
+            siginin
+        </TabsContent>
+        <TabsContent value='signup'>{signUpFormControls}</TabsContent>
         </Tabs>
       </div>
     </div>
