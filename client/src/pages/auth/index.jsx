@@ -24,9 +24,9 @@ const AuthPage = () => {
         onValueChange ={handleTabChange}
         className='w-full max-w-md'
         >
-        <TabsList className='grid w-full grid-col-2'>
-            <TabsTrigger value='signin'>Sign In </TabsTrigger>
-            <TabsTrigger value='signup'>Sign UP </TabsTrigger>
+        <TabsList className='grid w-full grid-cols-2'>
+            <TabsTrigger value='signin' className='border-2 w-3/4 rounded-2xl'>Sign In </TabsTrigger>
+            <TabsTrigger value='signup' className='border-2 w-3/4 rounded-2xl'>Sign Up </TabsTrigger>
         </TabsList>
         <TabsContent value='signin'>signin</TabsContent>
         <TabsContent value='signup'>signup</TabsContent>
