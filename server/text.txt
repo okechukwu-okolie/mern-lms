@@ -1,0 +1,1 @@
+mongodb+srv://mern-lms:mern-lms@mern-lms.mnq6ihl.mongodb.net/?appName=mern-LMS
