@@ -1,66 +1,114 @@
-import React from 'react'
-import { Label } from '../ui/label'
-import { Textarea } from '../ui/textarea'
-import { SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import React from "react";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+import {
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Input } from "../ui/input";
 
-const FormControls = ({formControls = [], formData, setFormData}) => {
+const FormControls = ({ formControls = [], formData, setFormData }) => {
+  function renderComponentByType(getControlItem) {
+    let element = null;
+    const currentControlItemValue = formData[getControlItem.name]
 
-    function renderComponentByType(getControlItem){
-
-      let element = null
-
-      switch(getControlItem.componentType){
-        case 'input':
-          element = <Input
-          id={getControlItem.name}
-          name={getControlItem.name}
-          placeholder={getControlItem.placeholder}
-          type={getControlItem.type}
+    switch (getControlItem.componentType) {
+      case "input":
+        element = (
+          <Input
+            id={getControlItem.name}
+            name={getControlItem.name}
+            placeholder={getControlItem.placeholder}
+            type={getControlItem.type}
+            value = {currentControlItemValue}
+            onChange={(e)=>setFormData(
+              {
+              ...formData,
+              [getControlItem.name]: e.tagret.value
+            }
+          )}
           />
-          break;
+        );
+        break;
 
-           case 'select':
-          element =<Select>
-            <SelectTrigger className='w-full'>
-              <SelectValue placeholder={getControlItem.label}/>
+      case "select":
+        element = (
+          <Select 
+          onValueChange={(value)=> setFormData(
+            {
+              ...formData,
+              [getControlItem.name]: value
+            }
+          )}
+          value={currentControlItemValue}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder={getControlItem.label} />
             </SelectTrigger>
             <SelectContent>
-             {
-               getControlItem.options && getControlItem.options.length > 0 ? getControlItem.options.map(optionItem =><SelectItem key={optionItem.id} value={optionItem.id }></SelectItem>):null
-             }
+              {getControlItem.options && getControlItem.options.length > 0
+                ? getControlItem.options.map(optionItem => (
+                    <SelectItem
+                      key={optionItem.id}
+                      value={optionItem.id}
+                    >{optionItem.label}</SelectItem>
+                  ))
+                : null}
             </SelectContent>
           </Select>
-          break;
+        );
+        break;
 
-           case 'textarea':
-          element = <Textarea 
-          id={getControlItem.name}
-          name={getControlItem.name}
-          placeholder={getControlItem.placeholder}
+      case "textarea":
+        element = (
+          <Textarea
+            id={getControlItem.name}
+            name={getControlItem.name}
+            placeholder={getControlItem.placeholder}
+             value = {currentControlItemValue}
+            onChange={(e)=>setFormData(
+              {
+              ...formData,
+              [getControlItem.name]: e.tagret.value
+            }
+          )}
           />
-          break;
+        );
+        break;
 
-           default:
-          element = <Input
-          id={getControlItem.name}
-          name={getControlItem.name}
-          placeholder={getControlItem.placeholder}
+      default:
+        element = 
+          <Input
+            id={getControlItem.name}
+            name={getControlItem.name}
+            placeholder={getControlItem.placeholder}
+            type={getControlItem.type}
+            value = {currentControlItemValue}
+            onChange={(e)=>setFormData(
+              {
+              ...formData,
+              [getControlItem.name]: e.tagret.value
+            }
+          )}
           />
-          break;
-      }
+        ;
+        break;
     }
+    return element
+  }
 
   return (
-    <div className='flex flex-col gap-3'>
-      {
-        formControls.map(controlItems=> 
-            <div key={controlItems.name}>
-                <Label htmlFor ={controlItems.name}>{controlItems.label}</Label>
-            </div>
-        )
-      }
+    <div className="flex flex-col gap-3 border-2 p-3 mb-3">
+      {formControls.map((controlItems) => (
+        <div key={controlItems.name} className="pb-1 ">
+          <Label htmlFor={controlItems.name} className='mb-2'>{controlItems.label}</Label>
+          {renderComponentByType(controlItems)}
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default FormControls
+export default FormControls;
