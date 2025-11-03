@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const authRoutes = require('./routes/auth-routes/index')
 
 
 
@@ -30,6 +31,9 @@ mongoose.connect(MONGO_URL)
 
 
 //route configuration
+
+app.use('/auth', authRoutes)
+
 
 app.use((err,req,res,next)=>{
     console.log(err.stack);
