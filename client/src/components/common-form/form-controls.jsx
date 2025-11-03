@@ -26,7 +26,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             onChange={(e)=>setFormData(
               {
               ...formData,
-              [getControlItem.name]: e.tagret.value
+              [getControlItem.name]: e.target.value
             }
           )}
           />
@@ -71,7 +71,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             onChange={(e)=>setFormData(
               {
               ...formData,
-              [getControlItem.name]: e.tagret.value
+              [getControlItem.name]: e.target.value
             }
           )}
           />
@@ -89,7 +89,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             onChange={(e)=>setFormData(
               {
               ...formData,
-              [getControlItem.name]: e.tagret.value
+              [getControlItem.name]: e.target.value
             }
           )}
           />

@@ -2,7 +2,14 @@ import React from "react";
 import FormControls from "./form-controls";
 import { Button } from "../ui/button";
 
-const CommonForm = ({handleSubmit,buttonText,formControls = [],formData,setFormData,}) => {
+const CommonForm = ({
+  handleSubmit,
+  buttonText,
+  formControls = [],
+  formData,
+  setFormData,
+  isButtonDisabled 
+}) => {
   return (
     <form onSubmit={handleSubmit}>
       {/* render form controls here */}
@@ -11,9 +18,14 @@ const CommonForm = ({handleSubmit,buttonText,formControls = [],formData,setFormD
         formData={formData}
         setFormData={setFormData}
       />
-      {/* <Button type="submit">{buttonText || "Submit"}</Button> */}
-      <Button  type='submit' className='mt-5 w-full font-black bg-black'>{buttonText || 'Submit'}</Button>
 
+      <Button
+        disabled={isButtonDisabled}
+        type="submit"
+        className="mt-5 w-full font-black bg-black"
+      >
+        {buttonText || "Submit"}
+      </Button>
     </form>
   );
 };
