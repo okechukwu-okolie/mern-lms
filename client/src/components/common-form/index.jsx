@@ -12,7 +12,7 @@ const CommonForm = ({handleSubmit,buttonText,formControls = [],formData,setFormD
         setFormData={setFormData}
       />
       {/* <Button type="submit">{buttonText || "Submit"}</Button> */}
-      <Button variant="outline" type='submit' className='mt-5 w-full font-black'>{buttonText || 'Submit'}</Button>
+      <Button  type='submit' className='mt-5 w-full font-black bg-black'>{buttonText || 'Submit'}</Button>
 
     </form>
   );

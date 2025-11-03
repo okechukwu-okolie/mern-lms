@@ -17,39 +17,45 @@ import { Link } from "react-router-dom";
 const AuthPage = () => {
   const [activeTab, setActiveTab] = useState("signin");
   const {
-        signInFormData,
-        setSignInFormData,
-        signUpFormData,
-        setSignUpFormData,
-  } = useContext(AuthContext)
+    signInFormData,
+    setSignInFormData,
+    signUpFormData,
+    setSignUpFormData,
+  } = useContext(AuthContext);
 
   const handleTabChange = (value) => {
     setActiveTab(value);
   };
 
-  console.log(signInFormData)
+  function checkIfSignInFormIsValid() {
+    return (
+      signInFormData &&
+      signInFormData.userEmail !== "" &&
+      signInFormData.password !== ""
+    );
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-[50px] flex items-center border-bottom bg-blue-100">
+      <header className="px-4 lg:px-6 h-[50px] flex items-center border-bottom ">
         <Link to={"/"} className="flex items-center justify-center">
           <GraduationCap className="h-8 w-8 mr-4" />
           <span className="font-extrabold text-xl">LMS LEARNING </span>
         </Link>
       </header>
 
-      <div className="flex items-center justify-center min-h-[calc(100vh-50px)] bg-orange-50">
+      <div className="flex items-center justify-center min-h-[calc(100vh-50px)]">
         <Tabs
           value={activeTab}
           defaultValue="signin"
           onValueChange={handleTabChange}
           className="w-full max-w-md "
         >
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="signin" className="border-2 w-3/4 rounded-2xl">
+          <TabsList className="grid w-full grid-cols-2 ">
+            <TabsTrigger value="signin" className="border-2 w-2/4 rounded-2xl">
               Sign In{" "}
             </TabsTrigger>
-            <TabsTrigger value="signup" className="border-2 w-3/4 rounded-2xl">
+            <TabsTrigger value="signup" className="border-2 w-2/4 rounded-2xl">
               Sign Up{" "}
             </TabsTrigger>
           </TabsList>
@@ -67,6 +73,7 @@ const AuthPage = () => {
                   buttonText={"Sign In"}
                   formData={signInFormData}
                   setFormData={setSignInFormData}
+                  isButtonDisabled={!checkIfSignInFormIsValid()}
                   // handleSubmit={}
                 />
               </CardContent>
@@ -84,7 +91,7 @@ const AuthPage = () => {
               <CardContent className="space-y-2">
                 <CommonForm
                   formControls={signUpFormControls}
-                  buttonText={"Sign Up"} 
+                  buttonText={"Sign Up"}
                   formData={signUpFormData}
                   setFormData={setSignUpFormData}
                   // handleSubmit={}
