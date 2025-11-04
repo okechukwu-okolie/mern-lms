@@ -30,8 +30,7 @@ mongoose.connect(MONGO_URL)
 .catch((error)=>console.log(error))
 
 
-//route configuration
-
+//route configuratio 
 app.use('/auth', authRoutes)
 
 
