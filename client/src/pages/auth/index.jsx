@@ -78,7 +78,7 @@ const AuthPage = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
-                <CommonForm
+                <CommonForm      
                   formControls={signInFormControls}
                   buttonText={"Sign In"}
                   formData={signInFormData}
@@ -105,7 +105,7 @@ const AuthPage = () => {
                   formData={signUpFormData}
                   setFormData={setSignUpFormData}
                   isButtonDisabled= {!checkIfSignUpFormIsValid()}
-                  // handleSubmit={}
+                  handleSubmit={handleRegisterUser}
                 />
               </CardContent>
             </Card>

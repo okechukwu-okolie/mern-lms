@@ -16,7 +16,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
 
     switch (getControlItem.componentType) {
       case "input":
-        element = (
+        element = (    
           <Input
             id={getControlItem.name}
             name={getControlItem.name}

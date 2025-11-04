@@ -21,7 +21,7 @@ export const signUpFormControls = [
         componentType:'input'
     },
 ]
-
+      
 
 export const signInFormControls = [
    
