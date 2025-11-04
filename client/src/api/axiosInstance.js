@@ -5,4 +5,17 @@ const axiosInstance = axios.create({
     baseURL:  'http://localhost:5500'
 })
 
+
+//axios interceptors
+axiosInstance.interceptors.request.use((config => {
+    const accessToken = sessionStorage.getItem('accessToken')
+    
+    if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`
+    }
+    return config;
+}), (error) => {
+    return Promise.reject(error)
+})
+
 export default axiosInstance   
