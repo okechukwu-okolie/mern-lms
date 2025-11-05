@@ -2,9 +2,11 @@ import axiosInstance from "@/api/axiosInstance";
 // import axios from "axios";
 
 export async function registerService(formData){
-    const {data} = await axiosInstance.post('/auth/register',{
-        ...formData,
-        role:'user'
+    const {data} = await axiosInstance.post('/auth/register',{...formData,role:'user'})
+return data;
+}  
+
+    
     // const api_url = 'http://localhost:5500/auth/register'; 
     // const userPayload = {
     //     ...formData,
@@ -18,10 +20,6 @@ export async function registerService(formData){
     //     console.error('Error creating user: ', error);
     //     throw error;
     // }
-    }
-)
-return data;
-}  
 
 
 
