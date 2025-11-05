@@ -5,7 +5,6 @@ import { AuthContext } from "@/context/auth-context";
 
 const Common = () => {
   const { signIn,
-      setSignIn,
       signUp,
       handleEmailSignUp,
       handleUsernameSignUp,
@@ -13,11 +12,10 @@ const Common = () => {
       handleEmailSignIn,
       handlePasswordSignIn,
       toggle,
-      setToggle,
       handleToggle,
       handleSignUp,
-      handleSignIn} =
-    useContext(AuthContext);
+      handleSignIn,
+    } = useContext(AuthContext);
   return (
     <div className="min-h-screen flex flex-col justify-center items-center gap-8">
       <div className="flex">

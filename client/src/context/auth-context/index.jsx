@@ -96,21 +96,21 @@ export default function AuthProvider({children}){
     setToggle(!toggle)
   }
  const handleEmailSignUp=(e)=>{
-    e.preventDefault() 
+    // e.preventDefault() 
     setSignUp({
       ...signUp,
       email: e.target.value
     })
 }
  const handleUsernameSignUp=(e)=>{
-    e.preventDefault() 
+    // e.preventDefault() 
     setSignUp({
       ...signUp,
       username: e.target.value
     })
 }
  const handlePasswordSignUp=(e)=>{
-    e.preventDefault() 
+    // e.preventDefault() 
     setSignUp({
       ...signUp,
       password: e.target.value
@@ -118,7 +118,7 @@ export default function AuthProvider({children}){
 }
 
  const handleEmailSignIn=(e)=>{
-    e.preventDefault() 
+    // e.preventDefault() 
     setSignIn({
       ...signIn,
       email: e.target.value
@@ -126,11 +126,20 @@ export default function AuthProvider({children}){
 }
 
 const handlePasswordSignIn=(e)=>{
-    e.preventDefault() 
+    // e.preventDefault() 
     setSignIn({
       ...signIn,
       password: e.target.value
     })
+}
+const handleSignUp=(e)=>{
+    e.preventDefault() 
+    console.log("Sign Up data:",signUp)
+}
+
+const handleSignIn=(e)=>{
+    e.preventDefault() 
+    console.log("Sign In data:",signIn)
 }
 
 
@@ -148,7 +157,9 @@ const handlePasswordSignIn=(e)=>{
       handleUsernameSignUp,
       handlePasswordSignUp,
       handleEmailSignIn,
-      handlePasswordSignIn
+      handlePasswordSignIn,
+      handleSignUp,
+      handleSignIn
     }}>
     {children}
   </AuthContext.Provider>)
