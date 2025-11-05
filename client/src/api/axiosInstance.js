@@ -1,9 +1,7 @@
 import axios from "axios"
 
 // axios.
-const axiosInstance = axios.create({
-    baseURL:  'http://localhost:5500'
-})
+const axiosInstance = axios.create({baseURL:  'http://localhost:5500'});
 
   // const api_url = 'http://localhost:5500/auth/register'; 
 
@@ -23,6 +21,10 @@ const axiosInstance = axios.create({
 
 
 //axios interceptors
+
+
+
+
 axiosInstance.interceptors.request.use((config => {
     const accessToken = sessionStorage.getItem('accessToken')
     
