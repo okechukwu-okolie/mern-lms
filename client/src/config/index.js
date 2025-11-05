@@ -53,3 +53,8 @@ export const initialSignUpFormData = {
     userEmail: "",
     password: "",
 }
+
+export const authState =  {
+    authenticate: false,
+    user: null,
+  }
