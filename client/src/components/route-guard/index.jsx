@@ -1,5 +1,5 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom';
+import React,{Fragment} from 'react'
+import { Navigate, useLocation } from 'react-router-dom';
 
 const RouteGuard = ({authenticated, user, element}) => {
 
@@ -8,21 +8,21 @@ const RouteGuard = ({authenticated, user, element}) => {
         return <Navigate to="/auth" />;
     }
 
-    if(authenticated && user?.role !== 'admin' && (location.pathname.includes('admin') || location.pathname.includes('/auth'))){
+    if(authenticated && user?.role !== 'instructor' && (location.pathname.includes('instructor') || location.pathname.includes('/auth'))){
         return <Navigate to="/home" />;
     }
 
-    if(authenticated && user.role === 'admin' && location.pathname.includes('/auth')){
-        return <Navigate to="/admin/dashboard" />;
+    if(authenticated && user.role === 'instructor' && !location.pathname.includes('instructor')){
+        return <Navigate to="/instructor" />;
     }
 
 
 
 
   return (
-    <div>
-      
-    </div>
+    <Fragment>
+      {element}
+    </Fragment>
   )
 }
 

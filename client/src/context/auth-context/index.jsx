@@ -1,72 +1,90 @@
-import { authState, initialSignInFormData, initialSignUpFormData } from "@/config";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  authState,
+  initialSignInFormData,
+  initialSignUpFormData,
+} from "@/config";
 import { checkAuthService, loginService, registerService } from "@/services";
 import { createContext, useEffect, useState } from "react";
-
+import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
-
-
-
 
 export default function AuthProvider({ children }) {
   const [signInFormData, setSignInFormData] = useState(initialSignInFormData);
   const [signUpFormData, setSignUpFormData] = useState(initialSignUpFormData);
   const [auth, setAuth] = useState(authState);
-
+  const [change, setChange] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   //this function will handle user registration
-  async function handleRegisterUser(event){
-    event.preventDefault() 
-    const data = await registerService(signUpFormData)  
-    console.log(data)
+  async function handleRegisterUser(event) {
+    event.preventDefault();
+    const data = await registerService(signUpFormData);
+    console.log(data);
   }
 
-//this function will handle user login
-   async function handleLoginUser(event){
-    event.preventDefault() 
-    const data = await loginService(signInFormData)  
-   
-    if(data.success){
-      sessionStorage.setItem('accessToken',JSON.stringify(data.data.accessToken))
+  //this function will handle user login
+  async function handleLoginUser(event) {
+    event.preventDefault();
+    const data = await loginService(signInFormData);
+
+    if (data.success) {
+      sessionStorage.setItem(
+        "accessToken",
+        JSON.stringify(data.data.accessToken)
+      );
       setAuth({
-        authenticate:true,
-        user: data.data.user
-      })
-    }else{
+        authenticate: true,
+        user: data.data.user,
+      });
+    } else {
       setAuth({
-        authenticate:false,
-        user: null
-      })
+        authenticate: false,
+        user: null,
+      });
     }
   }
 
-  
-//check auth user on app load
-async function checkAuthUser(){
+  const handlebacktoSignIn = () => {
+    <Link to="/auth" />;
+
+    setChange(!change);
+  };
+
+  //check auth user on app load
+  async function checkAuthUser() {
     // call check auth service
     const data = await checkAuthService();
 
-    if(data.success){
+try {
+   if (data.success) {
       setAuth({
-        authenticate:true,
-        user: data.data.user
-      })
-    }else{ 
-      setAuth({
-        authenticate:false,
-        user: null
-      })
-    }
+        authenticate: true,
+        user: data.data.user,
+      });
+      setLoading(false);
+   }
+  }
+catch (error) {
+  console.log(error)
+  if(!error?.response?.data?.success ){
+    setAuth({
+      authenticate: false,
+      user: null,
+    });
+    setLoading(false);
+  }
 }
-//call check auth user on app load
-useEffect(() => {
-  checkAuthUser();
-},[])
-
-// console.log("Auth Context Auth State:", auth);
 
 
+   
+  //call check auth user on app load
+  useEffect(() => {
+    checkAuthUser();
+  }, []);
 
+  // console.log("Auth Context Auth State:", auth);
 
   return (
     <AuthContext.Provider
@@ -77,22 +95,63 @@ useEffect(() => {
         setSignUpFormData,
         handleRegisterUser,
         handleLoginUser,
+        auth,
+        setAuth,
+        handlebacktoSignIn,
+        change,
+        setChange,
       }}
     >
-      {children}
+      {loading ? <h1 className='flex justify-center items-center min-h-screen text-5xl font-extrabold'>Loading.......</h1> : children}
     </AuthContext.Provider>
   );
 }
-
+}
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 
 // import { initialSignInFormData, initialSignUpFormData, myInitialSignUpFormData } from "@/config";
 // import { createContext, useState } from "react";
 
-
 //  export const AuthContext = createContext(null);
 // export default function AuthProvider({children}){
- 
+
 //   const [signIn, setSignIn] = useState(initialSignInFormData)
 //   const [signUp, setSignUp] = useState(myInitialSignUpFormData)
 //   const [toggle, setToggle] = useState(false)
@@ -101,21 +160,21 @@ useEffect(() => {
 //     setToggle(!toggle)
 //   }
 //  const handleEmailSignUp=(e)=>{
-//     // e.preventDefault() 
+//     // e.preventDefault()
 //     setSignUp({
 //       ...signUp,
 //       email: e.target.value
 //     })
 // }
 //  const handleUsernameSignUp=(e)=>{
-//     // e.preventDefault() 
+//     // e.preventDefault()
 //     setSignUp({
 //       ...signUp,
 //       username: e.target.value
 //     })
 // }
 //  const handlePasswordSignUp=(e)=>{
-//     // e.preventDefault() 
+//     // e.preventDefault()
 //     setSignUp({
 //       ...signUp,
 //       password: e.target.value
@@ -123,7 +182,7 @@ useEffect(() => {
 // }
 
 //  const handleEmailSignIn=(e)=>{
-//     // e.preventDefault() 
+//     // e.preventDefault()
 //     setSignIn({
 //       ...signIn,
 //       email: e.target.value
@@ -131,25 +190,23 @@ useEffect(() => {
 // }
 
 // const handlePasswordSignIn=(e)=>{
-//     // e.preventDefault() 
+//     // e.preventDefault()
 //     setSignIn({
 //       ...signIn,
 //       password: e.target.value
 //     })
 // }
 // const handleSignUp=async(e)=>{
-//     e.preventDefault() 
+//     e.preventDefault()
 //     console.log("Sign Up data:",signUp)
 // }
 
 // const handleSignIn=async(e)=>{
-//     e.preventDefault() 
+//     e.preventDefault()
 //     console.log("Sign In data:",signIn)
 // }
 
-
-
-//   return(<AuthContext.Provider 
+//   return(<AuthContext.Provider
 //     value={{
 //       signIn,
 //       setSignIn,
@@ -165,9 +222,8 @@ useEffect(() => {
 //       handlePasswordSignIn,
 //       handleSignUp,
 //       handleSignIn,
-      
+
 //     }}>
 //     {children}
 //   </AuthContext.Provider>)
 // }
-
