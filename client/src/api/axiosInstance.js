@@ -26,8 +26,8 @@ const axiosInstance = axios.create({baseURL:  'http://localhost:5500'});
 
 
 axiosInstance.interceptors.request.use((config => {
-    const accessToken = sessionStorage.getItem('accessToken')
-    
+    const accessToken = JSON.parse(sessionStorage.getItem('accessToken')) || "";
+    //sessionStorage.getItem('accessToken')
     if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`
     }

@@ -13,13 +13,15 @@ export default function AuthProvider({ children }) {
   const [signUpFormData, setSignUpFormData] = useState(initialSignUpFormData);
   const [auth, setAuth] = useState(authState);
 
+
+  //this function will handle user registration
   async function handleRegisterUser(event){
     event.preventDefault() 
     const data = await registerService(signUpFormData)  
     console.log(data)
   }
 
-
+//this function will handle user login
    async function handleLoginUser(event){
     event.preventDefault() 
     const data = await loginService(signInFormData)  
@@ -39,7 +41,7 @@ export default function AuthProvider({ children }) {
   }
 
   
-// to check auth user
+//check auth user on app load
 async function checkAuthUser(){
     // call check auth service
     const data = await checkAuthService();
@@ -56,10 +58,12 @@ async function checkAuthUser(){
       })
     }
 }
-
+//call check auth user on app load
 useEffect(() => {
   checkAuthUser();
 },[])
+
+// console.log("Auth Context Auth State:", auth);
 
 
 
@@ -82,7 +86,7 @@ useEffect(() => {
 
 
 
-// import { initialSignInFormData, initialSignUpFormData } from "@/config";
+// import { initialSignInFormData, initialSignUpFormData, myInitialSignUpFormData } from "@/config";
 // import { createContext, useState } from "react";
 
 
@@ -90,7 +94,7 @@ useEffect(() => {
 // export default function AuthProvider({children}){
  
 //   const [signIn, setSignIn] = useState(initialSignInFormData)
-//   const [signUp, setSignUp] = useState(initialSignUpFormData)
+//   const [signUp, setSignUp] = useState(myInitialSignUpFormData)
 //   const [toggle, setToggle] = useState(false)
 
 //   const handleToggle = ()=>{
@@ -160,7 +164,8 @@ useEffect(() => {
 //       handleEmailSignIn,
 //       handlePasswordSignIn,
 //       handleSignUp,
-//       handleSignIn
+//       handleSignIn,
+      
 //     }}>
 //     {children}
 //   </AuthContext.Provider>)

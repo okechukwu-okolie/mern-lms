@@ -9,10 +9,12 @@ import {
 } from "../ui/select";
 import { Input } from "../ui/input";
 
-const FormControls = ({ formControls = [], formData, setFormData }) => {
+const FormControls = ({ formControls=[], formData, setFormData }) => {
+
+
   function renderComponentByType(getControlItem) {
     let element = null;
-    const currentControlItemValue = formData[getControlItem.name]
+    // const formData.name = formData[getControlItem.name] || '';
 
     switch (getControlItem.componentType) {
       case "input":
@@ -22,7 +24,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             type={getControlItem.type}
-            value = {currentControlItemValue}
+            value = {formData.name}
             onChange={(e)=>setFormData(
               {
               ...formData,
@@ -42,7 +44,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
               [getControlItem.name]: value
             }
           )}
-          value={currentControlItemValue}
+          value={formData.name}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder={getControlItem.label} />
@@ -67,7 +69,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             id={getControlItem.name}
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
-             value = {currentControlItemValue}
+             value = {formData.name}
             onChange={(e)=>setFormData(
               {
               ...formData,
@@ -85,7 +87,7 @@ const FormControls = ({ formControls = [], formData, setFormData }) => {
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             type={getControlItem.type}
-            value = {currentControlItemValue}
+            value = {formData.name}
             onChange={(e)=>setFormData(
               {
               ...formData,

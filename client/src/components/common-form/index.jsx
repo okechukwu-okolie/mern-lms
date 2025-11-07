@@ -5,8 +5,8 @@ import { Button } from "../ui/button";
 const CommonForm = ({
   handleSubmit,
   buttonText,
-  formControls = [],
-  formData,
+  formControls ,
+  formData =[],
   setFormData,
   isButtonDisabled 
 }) => {

@@ -1,6 +1,6 @@
 import { Routes,Route } from "react-router-dom"
 import AuthPage from "./pages/auth"
-// import Common from "./myAuth/Common"
+import Common from "./myAuth/Common"
 
 
 
