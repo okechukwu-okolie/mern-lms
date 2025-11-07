@@ -1,11 +1,25 @@
-//import the User model from it folder
+//import the User schema from the model folder`1`
+
 const User = require('../../model/User')
 //for encrypting the password
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 
+const collectUser = async(req,res)=>{
 
+  const {username, email, password, role}=req.body
+
+  const userPresent = new User.findOne({email})
+
+  if(email){
+    res.status(400).json({
+      success:false,
+      messsage:'user already exists. please use another email'
+    })
+  }
+  const passwordHashed = await bcrypt.hash
+}
 
 
 

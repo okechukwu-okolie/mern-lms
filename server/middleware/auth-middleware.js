@@ -8,9 +8,10 @@ const verifyToken = (token, secretKey)=>{
 
 
 
+
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  if(!authheader){
+  if(!authHeader){
     return res.status(401).json({
       success:false,
       message:'User is not authenticated'
