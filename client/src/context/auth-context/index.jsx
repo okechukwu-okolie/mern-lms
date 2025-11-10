@@ -14,7 +14,6 @@ export default function AuthProvider({ children }) {
   const [signInFormData, setSignInFormData] = useState(initialSignInFormData);
   const [signUpFormData, setSignUpFormData] = useState(initialSignUpFormData);
   const [auth, setAuth] = useState(authState);
-  const [change, setChange] = useState(true);
   const [loading, setLoading] = useState(true);
 
   //this function will handle user registration
@@ -46,36 +45,40 @@ export default function AuthProvider({ children }) {
     }
   }
 
-  const handlebacktoSignIn = () => {
-    <Link to="/auth" />;
+  // const handlebacktoSignIn = () => {
+  //   <Link to="/auth" />;
 
-    setChange(!change);
-  };
+  //   setChange(!change);
+  // };
 
   //check auth user on app load
-  async function checkAuthUser() {
-    // call check auth service
-    const data = await checkAuthService();
-
-try {
-   if (data.success) {
-      setAuth({
-        authenticate: true,
-        user: data.data.user,
-      });
-      setLoading(false);
-   }
+ async function checkAuthUser() {
+    try {
+      const data = await checkAuthService();
+      if (data.success) {
+        setAuth({
+          authenticate: true,
+          user: data.data.user,
+        });
+        setLoading(false);
+      } else {
+        setAuth({
+          authenticate: false,
+          user: null,
+        });
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      if (!error?.response?.data?.success) {
+        setAuth({
+          authenticate: false,
+          user: null,
+        });
+        setLoading(false);
+      }
+    }
   }
-catch (error) {
-  console.log(error)
-  if(!error?.response?.data?.success ){
-    setAuth({
-      authenticate: false,
-      user: null,
-    });
-    setLoading(false);
-  }
-}
 
 
    
@@ -96,17 +99,14 @@ catch (error) {
         handleRegisterUser,
         handleLoginUser,
         auth,
-        setAuth,
-        handlebacktoSignIn,
-        change,
-        setChange,
+        setAuth
       }}
     >
       {loading ? <h1 className='flex justify-center items-center min-h-screen text-5xl font-extrabold'>Loading.......</h1> : children}
     </AuthContext.Provider>
   );
 }
-}
+
 // 
 // 
 // 

@@ -15,45 +15,46 @@ function App() {
   const {auth} = useContext(AuthContext)
 
   return (
-   <div>
-    <Routes>
+    <div>
+      <Routes>
+        <Route
+          path="/auth"
+          element={
+            <RouteGuard
+              element={<AuthPage />}
+              authenticated={auth?.authenticate}
+              user={auth?.user}
+            />
+          }
+        />
 
+        <Route
+          path="/instructor"
+          element={
+            <RouteGuard
+              element={<InstructorDashboardpage />}
+              authenticated={auth?.authenticate}
+              user={auth?.user}
+            />
+          }
+        />
 
-      <Route path="/auth" element={<RouteGuard element={<AuthPage />} authenticated={auth?.authenticate}user={auth?.user}/>
-        }
-      />
-
-
-
-     <Route path="/instructor" element={ <RouteGuard  element={<InstructorDashboardpage />}  authenticated={auth?.authenticate} user={auth?.user}/>
-        }
-      />
-
-
-    
-    <Route
-        path="/"
-        element={
-          <RouteGuard
-            element={<StudentViewCommonLayout />}
-            authenticated={auth?.authenticate}
-            user={auth?.user}
-          />
-        }
-      >
-
-        <Route path="" element={<StudentHomePage/>}/>
-      <Route path="home" element={<StudentHomePage/>}/>
-
-    </Route>
-
-
-
-    </Routes>
-
-   
-   </div>
-  )
+        <Route
+          path="/"
+          element={
+            <RouteGuard
+              element={<StudentViewCommonLayout />}
+              authenticated={auth?.authenticate}
+              user={auth?.user}
+            />
+          }
+        >
+          <Route path="" element={<StudentHomePage />} />
+          <Route path="home" element={<StudentHomePage />} />
+        </Route>
+      </Routes>
+    </div>
+  );
 }
 
 export default App
