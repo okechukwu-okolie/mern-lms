@@ -20,7 +20,7 @@ const CommonForm = ({
       />
 
       <Button      
-        disabled={isButtonDisabled}
+        disabled={formData.userEmail.trim() === '' && formData.password.trim()===''  ?  isButtonDisabled: ""}
         type="submit"
         className="mt-5 w-full font-black bg-black"
       >

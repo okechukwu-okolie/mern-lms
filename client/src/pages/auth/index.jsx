@@ -84,7 +84,7 @@ const AuthPage = () => {
                   buttonText={"Sign In"}
                   formData={signInFormData}
                   setFormData={setSignInFormData}
-                  isButtonDisabled= {!checkIfSignInFormIsValid()}
+                  isButtonDisabled= {checkIfSignInFormIsValid()}
                   handleSubmit={handleLoginUser}
                 />
               </CardContent>
