@@ -81,6 +81,13 @@ export default function AuthProvider({ children }) {
   }
 
 
+
+  function resetCredentials(){
+     setAuth({
+      authenticate:false,
+      user:null,
+     })
+  }
    
   //call check auth user on app load
   useEffect(() => {
@@ -99,7 +106,8 @@ export default function AuthProvider({ children }) {
         handleRegisterUser,
         handleLoginUser,
         auth,
-        setAuth
+        setAuth,
+        resetCredentials
       }}
     >
       {loading ? <h1 className='flex justify-center items-center min-h-screen text-5xl font-extrabold'>Loading.......</h1> : children}

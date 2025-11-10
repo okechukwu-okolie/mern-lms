@@ -1,13 +1,19 @@
-import React, { useContext } from 'react'
+import { Button } from '@/components/ui/button'
 import { AuthContext } from '@/context/auth-context'
+import React, { useContext } from 'react'
+
 
 const StudentHomePage = () => {
-  const { handlebacktoSignIn, change } = useContext(AuthContext);
 
+  const {resetCredentials} = useContext(AuthContext)
+
+   const handleLogout =()=>{
+  resetCredentials()
+  sessionStorage.clear()
+  }
   return (
     <div>
-      <button onClick={handlebacktoSignIn} className='border-3 p-3'>CLICK ME....</button>
-      {change ? "this is the student homepage" : "this is not the student homepage"}
+      <Button onClick={handleLogout}>Logout</Button>
     </div>
   )
 }

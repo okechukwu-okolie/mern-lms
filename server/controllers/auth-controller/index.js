@@ -6,20 +6,20 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 
-const collectUser = async(req,res)=>{
+// const collectUser = async(req,res)=>{
 
-  const {username, email, password, role}=req.body
+//   const {username, email, password, role}=req.body
 
-  const userPresent = new User.findOne({email})
+//   const userPresent = new User.findOne({email})
 
-  if(email){
-    res.status(400).json({
-      success:false,
-      messsage:'user already exists. please use another email'
-    })
-  }
-  const passwordHashed = await bcrypt.hash
-}
+//   if(email){
+//     res.status(400).json({
+//       success:false,
+//       messsage:'user already exists. please use another email'
+//     })
+//   }
+//   const passwordHashed = await bcrypt.hash
+// }
 
 
 
