@@ -8,6 +8,7 @@ import InstructorDashboardpage from "./pages/instructor"
 import StudentViewCommonLayout from "./components/student-view/commin-layout"
 import StudentHomePage from "./pages/student/home"
 import NotFound from "./pages/not-Found"
+import AddNewCoursePage from "./pages/instructor/add-new-page"
 
 
 
@@ -40,6 +41,17 @@ function App() {
           }
         />
 
+         <Route
+          path="/instructor/create-new-course"
+          element={
+            <RouteGuard
+              element={<AddNewCoursePage />}
+              authenticated={auth?.authenticate}
+              user={auth?.user}
+            />
+          }
+        />
+
         <Route
           path="/"
           element={
@@ -50,6 +62,7 @@ function App() {
             />
           }
         >
+{/*these are the children component of the student view common laylout */}
           <Route path="" element={<StudentHomePage />} />
           <Route path="home" element={<StudentHomePage />} />
          
@@ -63,6 +76,4 @@ function App() {
 export default App
 
 
- {/* <Routes>
-      <Route path="/my-auth" element={<Common/>}/>
-    </Routes> */}
+ 

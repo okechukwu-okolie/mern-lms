@@ -11,18 +11,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useNavigate } from "react-router-dom";
 
 const InstructorCourses = () => {
+
+  const navigate = useNavigate()
   return (
     <Card>
-      <CardHeader classname="flex justify-between flex-row items-center">
-        <CardTitle className="text-3xl font-extrabold">All Courses</CardTitle>
-        <Button className="p-6">Create New Course</Button>
+      <CardHeader className ="flex justify-between flex-row items-center">
+        <CardTitle className ="text-3xl font-extrabold">All Courses</CardTitle>
+        <Button onClick ={()=>navigate('/instructor/create-new-course')} className="p-6">Create New Course</Button>
       </CardHeader>
       <CardContent>
         <div classname="overflow-x-auto">
           <Table>
-            <TableCaption>A list of your recent invoices.</TableCaption>
+            
             <TableHeader>
               <TableRow>
                 <TableHead >Course</TableHead>
