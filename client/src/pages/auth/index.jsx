@@ -62,7 +62,7 @@ const AuthPage = () => {
           onValueChange={handleTabChange}
           className="w-full max-w-md "
         >
-          <TabsList className="grid w-full grid-cols-2 ">
+          <TabsList >
             <TabsTrigger value="signin" className="border-2 w-2/4 rounded-2xl">
               Sign In{" "}
             </TabsTrigger>
