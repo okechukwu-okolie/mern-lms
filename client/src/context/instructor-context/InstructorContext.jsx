@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { createContext } from "react-router-dom"
+import { courseCurriculumInitialFormData, courseLandingInitialFormData } from "@/config";
+import { useState,createContext } from "react";
 
 
 
@@ -8,13 +8,20 @@ import { createContext } from "react-router-dom"
 export const InstructorContext = createContext(null)
 export default function InstructorProvider({children}){
 
-  const [loading, setLoading] = useState(true);
-    return(
-        <InstructorContext 
+//   const [loading, setLoading] = useState(true);
+  const [courseLandingFormData,setCourseLandingFormData] = useState(courseLandingInitialFormData)
+   const [courseCurricullumFormData,setCourseCurricullumFormData] = useState(courseCurriculumInitialFormData) 
+  
+  return(
+        <InstructorContext.Provider 
         value={{
-
+            courseLandingFormData,
+            setCourseLandingFormData,
+            courseCurricullumFormData,
+            setCourseCurricullumFormData
         }}>
-            {loading ? <h1 className='flex justify-center items-center min-h-screen text-5xl font-extrabold'>Loading.......</h1> : children}
-        </InstructorContext>
+            {children}
+        </InstructorContext.Provider>
     )
 }
+

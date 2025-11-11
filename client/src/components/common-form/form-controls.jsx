@@ -2,6 +2,7 @@ import React from "react";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import {
+  Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -37,7 +38,7 @@ const FormControls = ({ formControls=[], formData, setFormData }) => {
 
       case "select":
         element = (
-          <Select 
+          <Select
           onValueChange={(value)=> setFormData(
             {
               ...formData,

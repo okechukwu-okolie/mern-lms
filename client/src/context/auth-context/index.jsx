@@ -6,7 +6,6 @@ import {
 } from "@/config";
 import { checkAuthService, loginService, registerService } from "@/services";
 import { createContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
