@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const authRoutes = require('./routes/auth-routes/index.js')
+const mediaRoutes = require('./routes/instructor-routes/media-routes.js')
 
 
 
@@ -10,12 +11,6 @@ const authRoutes = require('./routes/auth-routes/index.js')
 const app = express()
 const PORT = process.env.PORT || 5500
 const MONGO_URL = process.env.MONGO_URL
-
-
-
-
-
-
 // {
 //         origin:process.env.CLIENT,
 //         methods:['PUT','POST','GET','DELETE'],
@@ -38,6 +33,7 @@ mongoose.connect(MONGO_URL)
 
 //route configuratio 
 app.use('/auth', authRoutes)
+app.use('/media', mediaRoutes)
 
 
 app.use((err,req,res,next)=>{
